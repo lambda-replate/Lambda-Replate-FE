@@ -12,6 +12,8 @@
 
 .nav-bar {
   width: 75vw;
+  height: 40px;
+  line-height: 40px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bizSignup } from '../actions';
-import Loader from 'react-loader-spinner';
+import { signup } from '../actions';
+import { Radio } from 'antd';
 
 
   class BusinessSignUp extends React.Component {
@@ -14,6 +14,7 @@ import Loader from 'react-loader-spinner';
               password: '',
           },
           confirmPassword: '',
+          userType: '',
       };
 
       handleChange = e => {
@@ -26,13 +27,17 @@ import Loader from 'react-loader-spinner';
           });
       };
 
-      
+      userChange = e => {
+        this.setState({
+            userType: e.target.value
+        })
+    };
 
-      businessSignUp = () => {
-          this.props.bizSignup(this.state.newBusiness).then(res => {
+      signUp = () => {
+          this.props.signup(this.state.newBusiness, this.state.userType).then(res => {
             console.log(res);
             if (res) {
-                this.props.history.push("/")
+                this.props.history.push(`/${this.state.userType}-dashboard`)
             }
         })
       }
@@ -40,7 +45,11 @@ import Loader from 'react-loader-spinner';
       render() {
           return(
               <div>
-                <form>
+                <Radio.Group onChange={this.userChange} value={this.state.userType}>
+                    <Radio value='business'>Business</Radio>
+                    <Radio value='volunteer'>Volunteer</Radio>
+                </Radio.Group>
+                <form onSubmit={() => this.signUp()}>
                     <input 
                     type='text' 
                     name='username'
@@ -81,8 +90,8 @@ import Loader from 'react-loader-spinner';
                     onChange={this.handleChange}
                     required='fill this out'
                     />
+                    <button type='submit'>Sign Us Up</button>
                 </form>
-                <button onClick={() => this.businessSignUp()}>Sign Us Up</button>
               </div>
           )
       }
@@ -97,4 +106,4 @@ import Loader from 'react-loader-spinner';
     
 }
 
-export default connect( mapStateToProps, { bizSignup } )(BusinessSignUp);
+export default connect( mapStateToProps, { signup } )(BusinessSignUp);

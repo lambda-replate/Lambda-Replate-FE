@@ -9,39 +9,25 @@ export const login = creds => dispatch => {
     return axiosWithAuth()
         .post('/auth/business/login', creds)
         .then(res => {
+            console.log(res);
             localStorage.setItem('jwt', res.data.token);
-            dispatch({ type: LOGIN_SUCCESS });
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
             return true;
         })
         .catch(err => console.log(`I can't let you do that, StarFox.`, err));
 };
 
-export const BUSINESS_SIGNUP = 'BUSINESS_SIGNUP';
+export const SIGNUP = 'SIGNUP';
 
-export const bizSignup = (newBusiness) => dispatch => {
-    dispatch({ type: BUSINESS_SIGNUP });
+export const signup = (newBusiness, userType) => dispatch => {
+    dispatch({ type: SIGNUP });
     return axiosWithAuth()
-        .post('/auth/business/register', newBusiness)
+        .post(`/auth/${userType}/register`, newBusiness)
         .then(res => {
             localStorage.setItem('jwt', res.data.token)
-            dispatch({ type: BUSINESS_SIGNUP, payload: res.data.token})
+            dispatch({ type: SIGNUP, payload: res.data.token})
         })
         .catch(err => {
             console.log('New Business ERR: ', err)
-        });
-};
-
-export const VOLUNTEER_SIGNUP = 'VOLUNTEER_SIGNUP';
-
-export const volunteerSignup = (newVolunteer) => dispatch => {
-    dispatch({ type: VOLUNTEER_SIGNUP });
-    return axiosWithAuth()
-        .post('/auth/volunteer/register', newVolunteer)
-        .then(res => {
-            localStorage.setItem('jwt', res.data.token)
-            dispatch({ type: VOLUNTEER_SIGNUP, payload: res.data.token })
-        })
-        .catch(err => {
-            console.log('New VOLUNTEER ERR: ', err)
         });
 };

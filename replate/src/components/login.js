@@ -28,7 +28,7 @@ class Login extends React.Component {
         this.props.login(this.state.creds).then(res => {
             console.log(res);
             if (res) {
-                this.props.history.push("/")
+                this.props.history.push("/business-dashboard")
             }
         })
     }
