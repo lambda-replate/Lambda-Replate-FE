@@ -1,11 +1,32 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const BusinessDashboard = () => {
-    return(
-        <div>
-            <h2>Hey I'm the bizdash</h2>
-        </div>
-    )
+
+class BusinessDashboard extends React.Component {
+    state={
+        user: this.props.user
+    };
+
+    componentDidMount(){
+        this.setState({
+            user: this.props.user
+        });
+        console.log(this.props.user);
+    }
+
+    render(){
+        return(
+            <div>
+                <h2>{this.state.user.phone}</h2>
+            </div>
+        )
+    } 
 }
 
-export default BusinessDashboard;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect( mapStateToProps, {  } )(BusinessDashboard);

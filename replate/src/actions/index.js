@@ -9,7 +9,7 @@ export const login = creds => dispatch => {
     return axiosWithAuth()
         .post('/auth/business/login', creds)
         .then(res => {
-            console.log(res);
+            console.log(res.data.user);
             localStorage.setItem('jwt', res.data.token);
             dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
             return true;
@@ -21,11 +21,13 @@ export const SIGNUP = 'SIGNUP';
 
 export const signup = (newBusiness, userType) => dispatch => {
     dispatch({ type: SIGNUP });
+    console.log('Signing Up', newBusiness)
     return axiosWithAuth()
         .post(`/auth/${userType}/register`, newBusiness)
         .then(res => {
             localStorage.setItem('jwt', res.data.token)
-            dispatch({ type: SIGNUP, payload: res.data.token})
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data.user})
+            return true;
         })
         .catch(err => {
             console.log('New Business ERR: ', err)

@@ -14,7 +14,7 @@ import { Radio } from 'antd';
               password: '',
           },
           confirmPassword: '',
-          userType: '',
+          userType: 'business',
       };
 
       handleChange = e => {
@@ -29,11 +29,14 @@ import { Radio } from 'antd';
 
       userChange = e => {
         this.setState({
+            ...this.state,
             userType: e.target.value
         })
+        console.log(this.state.userType);
     };
 
-      signUp = () => {
+      signUp = e => {
+          e.preventDefault();
           this.props.signup(this.state.newBusiness, this.state.userType).then(res => {
             console.log(res);
             if (res) {
@@ -45,11 +48,11 @@ import { Radio } from 'antd';
       render() {
           return(
               <div>
-                <Radio.Group onChange={this.userChange} value={this.state.userType}>
-                    <Radio value='business'>Business</Radio>
+                <Radio.Group onChange={this.userChange} defaultValue="business">
+                    <Radio value='business' defaultChecked>Business</Radio>
                     <Radio value='volunteer'>Volunteer</Radio>
                 </Radio.Group>
-                <form onSubmit={() => this.signUp()}>
+                <form onSubmit={this.signUp}>
                     <input 
                     type='text' 
                     name='username'
