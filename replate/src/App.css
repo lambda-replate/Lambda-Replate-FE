@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+
+}
+
+.nav-bar-container {
+  width: 100%;
+  height: 40px;
+  background-color: #4CB050;
+  
+}
+
+.nav-bar {
+  width: 75vw;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.nav-logo {
+  color: white;
+}
+
+.nav-links a {
+  color: white;
+  margin: 0 20px;
+}
