@@ -1,0 +1,4 @@
+[build]
+base = "replate/"
+publish = "replate/build/"
+command = "yarn build"
