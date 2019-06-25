@@ -24,11 +24,12 @@ class Login extends React.Component {
 
 
     login = e => {
+        console.log(e.target.value);
         e.preventDefault();
         this.props.login(this.state.creds).then(res => {
             console.log(res);
             if (res) {
-                this.props.history.push("/business-dashboard")
+                this.props.history.push(`/business-dashboard`)
             }
         })
     }
@@ -37,7 +38,7 @@ class Login extends React.Component {
         return (
             <div>
                 <h1>Hey</h1>
-                <form onSubmit={this.login}>
+                <form>
                     <input 
                         type="text" 
                         placeholder="Username" 
@@ -54,8 +55,9 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                         required='fill this out'
                     />
-                    <button type="submit">Log in</button>
                 </form>
+                <button value='business' onClick={this.login}>Business Log in</button>
+                    <button value='volunteer' onClick={this.login}>Volunteer Log in</button>
             </div>
         )
     }

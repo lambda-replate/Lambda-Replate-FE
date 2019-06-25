@@ -1,4 +1,5 @@
 import { axiosWithAuth } from '../utilities/axiosWithAuth';
+//import '../utilities/addInterceptor';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -33,3 +34,25 @@ export const signup = (newBusiness, userType) => dispatch => {
             console.log('New Business ERR: ', err)
         });
 };
+
+export const ADD_FOOD = 'ADD_FOOD';
+
+export const addFood = (newFood) => dispatch => {
+    console.log(newFood);
+    const token = localStorage.getItem('jwt');
+    const requestConfig = {
+        headers: {
+            Authorization: token
+        }
+    }
+    return axiosWithAuth()
+    .post('/food', newFood, requestConfig)
+    .then(res => {
+        console.log('RESSSSSS', res);
+        dispatch({ type: ADD_FOOD, payload: res.data})
+    })
+    .catch(err => {
+        console.log('ERROR on ADD: ', err);
+    });
+};
+

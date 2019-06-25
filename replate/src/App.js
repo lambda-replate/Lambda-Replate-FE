@@ -5,6 +5,7 @@ import Login from './components/login';
 import NavBar from './components/navbar';
 import PrivateRoute from './components/privateRoute';
 import BusinessDashboard from './components/businessDashboard';
+import VolunteerDashboard from './components/volunteerDashboard';
 
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/business-sign-up" render={props => <BusinessSignUp {...props} />} />
       <PrivateRoute exact path='/business-dashboard' component={BusinessDashboard} />
+      <PrivateRoute exact path='/volunteer-dashboard' component={VolunteerDashboard} />
     
       
       
