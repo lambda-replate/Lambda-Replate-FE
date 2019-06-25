@@ -44,6 +44,7 @@ class VolunteerDashboard extends React.Component {
         .get('https://bw-replate.herokuapp.com/api/food', requestConfig)
         .then(res => {
             this.setState({
+                ...this.state,
                 foods: res.data
             })
         })
@@ -60,12 +61,14 @@ class VolunteerDashboard extends React.Component {
         .get('https://bw-replate.herokuapp.com/api/users/businesses', requestConfig)
         .then(res => {
             this.setState({
+                ...this.state,
                 businesses: res.data
             })
         })
     }
 
     claimFood = (foodID, claimStatus) => {
+        // debugger;
         this.props.claimFood(foodID, claimStatus);
         console.log(claimStatus)
         this.getFood();
@@ -76,7 +79,7 @@ class VolunteerDashboard extends React.Component {
             <div>
                 <FoodSection>
                     {this.state.foods.map(food => {
-                        return <FoodCard isBusiness={false} food={food} claimFood={this.claimFood} user_id={this.state.user.id}/>
+                        return <FoodCard isBusiness={false} food={food} claimFood={this.claimFood} user_id={this.state.user.id} businesses={this.state.businesses}/>
                     })}
                     
                 </FoodSection>

@@ -11,6 +11,15 @@ margin: 10px 10px;
 
 const FoodCard = props => {
     const isBusiness = props.isBusiness;
+    let businessName = '';
+
+    // for(let i = 0; i < props.businesses.length; i++) {
+    //     if(props.businesses[i].id === props.food.business_id) {
+    //         return businessName += `${props.businesses[i].organization_name}`
+    //     } else {
+    //         return businessName += null;
+    //     }
+    // }
 
     const foodClaim = () => {
         console.log(props.food.volunteer_id, props.food.is_claimed)
@@ -21,7 +30,7 @@ const FoodCard = props => {
             <h2>{props.food.name}</h2>
             <h4>{props.food.pickup_date}</h4>
             <h6>{props.food.time}</h6>
-            <p>{props.food.description}</p>
+            <p>{props.food.description}, food.business_id ==={props.food.business_id}</p>
             <span>{props.food.id}</span>
             {isBusiness && 
             <div>
