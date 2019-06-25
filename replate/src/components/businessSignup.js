@@ -8,10 +8,11 @@ import { Radio } from 'antd';
       state={
           newBusiness: {
               username: '',
+              password: '',
+              "organization_name": '',
               address: '',
               email: '',
               phone: '',
-              password: '',
           },
           confirmPassword: '',
           userType: 'business',
@@ -56,8 +57,16 @@ import { Radio } from 'antd';
                     <input 
                     type='text' 
                     name='username'
-                    placeholder='Company Name'
+                    placeholder='username'
                     value={this.state.newBusiness.name}
+                    onChange={this.handleChange}
+                    required='fill this out'
+                    />
+                    <input 
+                    type='text' 
+                    name='organization_name'
+                    placeholder='Organization Name'
+                    value={this.state.newBusiness.organization_name}
                     onChange={this.handleChange}
                     required='fill this out'
                     />
