@@ -1,7 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { addFood } from '../actions';
+import { addFood, deleteFood, updateFood } from '../actions';
+import FoodCard from './foodCard';
+import styled from 'styled-components';
+
+const FoodSection = styled.div`
+display: flex;
+flex-flow: row wrap;
+justify-content: space-evenly;
+`
 
 
 class BusinessDashboard extends React.Component {
@@ -67,10 +75,39 @@ class BusinessDashboard extends React.Component {
         this.getFood();
     }
 
+    deleteFood = id => {
+        console.log(id)
+        this.props.deleteFood(id);
+        this.getFood();    
+    }
+
+    updateFood = (food, id) => {
+        if(!this.state.newFood.name){
+            this.setState({
+                newFood:{
+                    ...food
+                }
+            })
+        } else{
+            this.props.updateFood(this.state.newFood, id);
+            this.setState({
+                newFood:{
+                    name: '',
+                    pickup_date: '',
+                    time: '',
+                    description: '',
+                    is_claimed: 0,
+                    volunteer_id: null,
+                }
+            })
+        }
+        this.getFood();
+    }
+
     
 
     render(){
-        return(
+       return(
             <div>
                 <h2>{this.state.user.phone}</h2>
                 <form onSubmit={this.addFood}>
@@ -80,9 +117,12 @@ class BusinessDashboard extends React.Component {
                     <input type="text" name="description" placeholder="Pickup Description" value={this.state.newFood.description} onChange={this.handleChange} />
                     <button type="submit">Schedule a Pickup</button>
                 </form>
-                {this.state.foods.map(food => {
-                   return <h3>{food.name}</h3>
-                })}
+                <FoodSection>
+                    {this.state.foods.map(food => {
+                    return <FoodCard food={food} deleteFood={this.deleteFood} updateFood={this.updateFood} isBusiness ={true}/>
+                    })}
+                </FoodSection>
+                
 
                 
             </div>
@@ -97,4 +137,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect( mapStateToProps, { addFood } )(BusinessDashboard);
+export default connect( mapStateToProps, { addFood, deleteFood, updateFood } )(BusinessDashboard);

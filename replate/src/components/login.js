@@ -24,12 +24,12 @@ class Login extends React.Component {
 
 
     login = e => {
-        console.log(e.target.value);
+        let place = e.target.value
         e.preventDefault();
-        this.props.login(this.state.creds).then(res => {
+        this.props.login(place, this.state.creds).then(res => {
             console.log(res);
             if (res) {
-                this.props.history.push(`/business-dashboard`)
+                this.props.history.push(`/${place}-dashboard`)
             }
         })
     }
@@ -55,6 +55,7 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                         required='fill this out'
                     />
+                    {/* {error && <div>Oops!</div>} */}
                 </form>
                 <button value='business' onClick={this.login}>Business Log in</button>
                     <button value='volunteer' onClick={this.login}>Volunteer Log in</button>
@@ -65,7 +66,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     console.log(state);
-    return {
+    return {    
        error: state.error,
     loggingIn: state.loggingIn 
     }

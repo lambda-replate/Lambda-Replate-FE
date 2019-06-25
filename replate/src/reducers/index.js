@@ -4,6 +4,7 @@ import {
     LOGIN_FAILURE,
     SIGNUP,
     ADD_FOOD,
+    DELETE_FOOD,
 } from '../actions';
 
 const initialState = {
@@ -39,8 +40,13 @@ const reducer = (state = initialState, action) => {
         case ADD_FOOD:
             return{
                 ...state,
-                foods: [...state.foods, action.payload]
+                foods: action.payload
             }
+            case DELETE_FOOD:
+                return {
+                    ...state,
+                    foods: action.payload
+                }
         default:
         return state;
     }
