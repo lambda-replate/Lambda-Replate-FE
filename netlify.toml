@@ -1,0 +1,9 @@
+[build]
+  base = "replate/"
+  publish = "replate/build/"
+
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
