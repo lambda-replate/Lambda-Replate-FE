@@ -4,6 +4,7 @@ import axios from 'axios';
 import { addFood, deleteFood, updateFood } from '../actions';
 import FoodCard from './foodCard';
 import styled from 'styled-components';
+import '../App.css';
 
 const FoodSection = styled.div`
 display: flex;
@@ -106,24 +107,79 @@ class BusinessDashboard extends React.Component {
 
     render(){
        return(
-            <div>
-                <h2>{this.state.user.phone}</h2>
-                <form onSubmit={this.addFood}>
-                    <input type="text" name="name" placeholder="Pickup Name" value={this.state.newFood.name} onChange={this.handleChange} />
-                    <input type="date" name="pickup_date" placeholder="Pickup Date" value={this.state.newFood.pickup_date} onChange={this.handleChange} />
-                    <input type="number" name="time" placeholder="Pickup Time" value={this.state.newFood.time} onChange={this.handleChange} />
-                    <input type="text" name="description" placeholder="Pickup Description" value={this.state.newFood.description} onChange={this.handleChange} />
-                    <button type="submit">Schedule a Pickup</button>
-                </form>
-                <FoodSection>
-                    {this.state.foods.map(food => {
-                    return <FoodCard food={food} deleteFood={this.deleteFood} updateFood={this.updateFood} isBusiness ={true}/>
-                    })}
-                </FoodSection>
-                
-
-                
+            <div className="business-dash-container">
+        <div className="dashboard-top">
+          <h1>My Business Dashboard</h1>
+          <h3>My Locations</h3>
+        </div>
+        <div className="business-location">
+          <div className="business-card">
+            <div className="business-photo"> stuff</div>
+            <div className="business-card-description">
+              <h3>Business Location</h3>
+              <h4>9222 E Hampden Ave, Denver, CO 80231</h4>
             </div>
+          </div>
+          <div className="food-pickup-form">
+            <div className="food-pickup-form-header">
+              <h1>Schedule a Pickup</h1>
+            </div>
+            <div className="form-wrapper">
+              <form onSubmit={this.addFood}>
+                <div className="pickup-name-input">
+                  <label>Pickup Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Pickup Name"
+                     value={this.state.newFood.name}
+            onChange={this.handleChange} 
+                  />
+                </div>
+                <div className="pickup-date-input">
+                  <label>Pickup Date</label>
+                  <input
+                    type="date"
+                    name="pickup_date"
+                    placeholder="Pickup Date"
+                     value={this.state.newFood.pickup_date}
+            onChange={this.handleChange} 
+                  />
+                </div>
+                <div className="pickup-time-input">
+                  <label>Pickup Time</label>
+                  <input
+                    type="time"
+                    name="time"
+                    placeholder="Pickup Time"
+                    value={this.state.newFood.time}
+            onChange={this.handleChange} 
+                  />
+                </div>
+                <div className="pickup-description-input">
+                  <label>Pickup Description</label>
+                  <input
+                    type="textarea"
+                    name="description"
+                    placeholder="Pickup Description"
+                    value={this.state.newFood.description}
+            onChange={this.handleChange}
+                  />
+                </div>
+                <button className="pickup-button" type="submit">
+                  + Schedule a Pickup
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+         <FoodSection>
+                 {this.state.foods.map(food => {
+                 return <FoodCard food={food} deleteFood={this.deleteFood} updateFood={this.updateFood} isBusiness ={true}/>
+                 })}
+             </FoodSection> 
+      </div>
         )
     } 
 }

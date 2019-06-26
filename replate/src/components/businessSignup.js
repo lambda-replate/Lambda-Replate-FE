@@ -2,6 +2,53 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../actions';
 import { Radio } from 'antd';
+import styled from 'styled-components';
+
+const SignUpForm = styled.div`
+width: 550px;
+height: 650px;
+background-color: white;
+border-radius: 15px;
+margin: 50px auto;
+overflow: hidden;
+box-shadow: 0 0 37px 5px #00000025;
+    form input{
+        display: block;
+        width: 80%;
+        margin: 15px auto;
+        border-radius: 8px 8px 0 8px;
+        background: none;
+        background-color: #f6f6f6;
+        border: 1px solid #dedede65;
+        height: 45px;
+        padding-left: 20px;
+    }
+    h1{
+        background-color: #4cb050;
+        color: white;
+        padding: 30px 0;
+        font-size: 2.6rem;
+        margin-top: 0px;
+    }
+`
+
+const SignUpButton = styled.div`
+    background: none;
+    border: none;
+    background-color: #4CB050;
+    border-radius: 8px 8px 0 8px;
+    width: 90%;
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px 2px #00000018;
+    cursor: pointer;
+    &:hover{
+        background-color: #2CB050;
+    }
+`
 
 
   class BusinessSignUp extends React.Component {
@@ -38,17 +85,22 @@ import { Radio } from 'antd';
 
       signUp = e => {
           e.preventDefault();
-          this.props.signup(this.state.newBusiness, this.state.userType).then(res => {
-            console.log(res);
-            if (res) {
-                this.props.history.push(`/${this.state.userType}-dashboard`)
-            }
-        })
+          if(!this.state.newBusiness.username || !this.state.newBusiness.password || !this.state.newBusiness.organization_name || !this.state.newBusiness.address || !this.state.newBusiness.email || !this.state.newBusiness.phone){
+              return alert('You must fill out all fields to sign up');
+          } else{
+            this.props.signup(this.state.newBusiness, this.state.userType).then(res => {
+                console.log(res);
+                if (res) {
+                    this.props.history.push(`/${this.state.userType}-dashboard`)
+                }
+            })
+          }
       }
 
       render() {
           return(
-              <div>
+              <SignUpForm>
+                  <h1>Sign Up here!</h1>
                 <Radio.Group onChange={this.userChange} defaultValue="business">
                     <Radio value='business' defaultChecked>Business</Radio>
                     <Radio value='volunteer'>Volunteer</Radio>
@@ -102,9 +154,9 @@ import { Radio } from 'antd';
                     onChange={this.handleChange}
                     required='fill this out'
                     />
-                    <button type='submit'>Sign Us Up</button>
+                    <SignUpButton type='submit' onClick={this.signUp}>Sign Us Up</SignUpButton>
                 </form>
-              </div>
+              </SignUpForm>
           )
       }
   };

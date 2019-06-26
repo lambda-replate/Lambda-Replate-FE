@@ -140,9 +140,6 @@ class VolunteerDashboard extends React.Component {
                     })} */}
                     
                 </FoodSection>
-                {this.state.businesses.map(business => {
-                        return <h3>{business.organization_name}</h3>
-                    })}
             </div>
         )
     }

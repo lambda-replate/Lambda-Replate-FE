@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import '../App.css';
 
 const FoodCardz = styled.div`
-width: 300px;
-height: 300px;
-border: 1px solid black;
-margin: 10px 10px;
+    width: 400px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 100px 50px;
+    margin: 10px 10px;
 `;
 
 
@@ -34,6 +36,18 @@ class FoodCard  extends React.Component  {
         })
     }
 
+    getTime = oldTime => {
+        let timeArr = oldTime.split(':');
+        let newTime = '';
+        if(timeArr[0] > 12) {
+            timeArr[0] -= 12;
+            newTime = `${timeArr[0]}:${timeArr[1]} PM`
+        } else {
+            newTime = `${timeArr[0]}:${timeArr[1]} AM` 
+        }
+       return newTime;
+    }
+
 
     listState = () => {
         return console.log(this.state);
@@ -51,11 +65,11 @@ class FoodCard  extends React.Component  {
 
     render() {
         return(
-        <FoodCardz>
-            <h2>{this.props.food.name}</h2>
-            <h4>{this.props.food.pickup_date}</h4>
-            <h6>{this.props.food.time}</h6>
-            <p>{this.props.food.description}</p>
+        <FoodCardz className={this.props.food.is_claimed ? (this.props.food.volunteer_id === this.props.user_id ? 'claimed-by-you' : 'claimed') : 'unclaimed'}>
+            <h2>Food: {this.props.food.name}</h2>
+            {this.props.businessName ? <h3>Provided By: {this.props.businessName}</h3> : null}
+            <p><h4>Pick-Up day:</h4> {this.props.food.pickup_date} at {this.getTime(this.props.food.time)}</p>
+            <p>What they said about the food: <br />{this.props.food.description}</p>
             {this.state.isBusiness && 
             <div>
                 <button onClick={ () => this.props.deleteFood(this.props.food.id)}>Delete Food</button>
@@ -66,7 +80,6 @@ class FoodCard  extends React.Component  {
                 {this.props.food.is_claimed=== 1 ? 'Unclaim food' : 'Claim food'}
             </button>
             }
-            <span>{this.props.businessName}</span>
         </FoodCardz>
         )
     }
