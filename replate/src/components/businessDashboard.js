@@ -65,9 +65,9 @@ class BusinessDashboard extends React.Component {
           });
     }
 
-    addFood = e => {
+    addFood = e  => {
         e.preventDefault();
-          this.props.addFood(this.state.newFood).then(res => {
+          this.props.addFood(this.state.newFood, this.getFood).then(res => {
             // if (res) {
             //     this.props.history.push(`/${this.state.userType}-dashboard`)
             // }
@@ -77,8 +77,7 @@ class BusinessDashboard extends React.Component {
 
     deleteFood = id => {
         console.log(id)
-        this.props.deleteFood(id);
-        this.getFood();    
+        this.props.deleteFood(id, this.getFood);  
     }
 
     updateFood = (food, id) => {
@@ -89,7 +88,7 @@ class BusinessDashboard extends React.Component {
                 }
             })
         } else{
-            this.props.updateFood(this.state.newFood, id);
+            this.props.updateFood(this.state.newFood, id, this.getFood);
             this.setState({
                 newFood:{
                     name: '',
@@ -101,7 +100,6 @@ class BusinessDashboard extends React.Component {
                 }
             })
         }
-        this.getFood();
     }
 
     

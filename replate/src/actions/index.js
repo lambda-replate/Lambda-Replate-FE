@@ -37,7 +37,7 @@ export const signup = (newBusiness, userType) => dispatch => {
 
 export const ADD_FOOD = 'ADD_FOOD';
 
-export const addFood = (newFood) => dispatch => {
+export const addFood = (newFood, proppedFunction) => dispatch => {
     console.log(newFood);
     const token = localStorage.getItem('jwt');
     const requestConfig = {
@@ -50,6 +50,7 @@ export const addFood = (newFood) => dispatch => {
     .then(res => {
         console.log('RESSSSSS', res);
         dispatch({ type: ADD_FOOD, payload: res.data})
+        proppedFunction();
     })
     .catch(err => {
         console.log('ERROR on ADD: ', err);
@@ -58,7 +59,7 @@ export const addFood = (newFood) => dispatch => {
 
 export const DELETE_FOOD = 'DELETE_FOOD';
 
-export const deleteFood = id => dispatch => {
+export const deleteFood = (id, proppedFunction) => dispatch => {
     const token = localStorage.getItem('jwt');
     const requestConfig = {
         headers: {
@@ -70,13 +71,14 @@ export const deleteFood = id => dispatch => {
     .then(res => {
         console.log(res);
         dispatch({ type: DELETE_FOOD, payload: res.data})
+        proppedFunction();
     })
     .catch(err => {
         console.log(err)
     })
 };
 
-export const updateFood = (updatedFood, id) => dispatch => {
+export const updateFood = (updatedFood, id, proppedFunction) => dispatch => {
         const token = localStorage.getItem('jwt');
         const requestConfig = {
             headers: {
@@ -88,6 +90,7 @@ export const updateFood = (updatedFood, id) => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_FOOD, payload: res.data})
+            proppedFunction();
         })
         .catch(err => {
             console.log(err)

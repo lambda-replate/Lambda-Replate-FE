@@ -30,3 +30,91 @@
   color: white;
   margin: 0 20px;
 }
+
+label {
+  margin: 0 0 0 8px;
+  font-size: 0.8rem;
+}
+
+.login-container {
+  width: 550px;
+  height: 500px;
+  background-color: white;
+  border-radius: 15px;
+  margin: 50px auto;
+  overflow: hidden;
+  box-shadow: 0 0 37px 5px #00000025;
+}
+
+.login-container form input {
+  display: block;
+  width: 100%;
+  margin: 5px auto;
+  border-radius: 8px 8px 0 8px;
+  background: none;
+  background-color: #f6f6f6;
+  border: 1px solid #dedede65;
+  height: 45px;
+  padding-left: 20px;
+}
+
+::placeholder {
+  color: rgba(39, 45, 45, 0.349);
+}
+
+.input-container {
+  text-align: left;
+  margin: 30px 0;
+}
+
+.form-container {
+  width: 60%;
+  margin: 40px auto;
+}
+
+.login-header {
+  background-color: #4cb050;
+  color: white;
+  padding: 30px 0;
+}
+
+.login-header h1 {
+  font-size: 2.6rem;
+}
+
+.business-button {
+  background: none;
+  border: none;
+  background-color: #c94e3e;
+  border-radius: 8px 8px 0 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px 2px #00000018;
+}
+
+.volunteer-button {
+  background: none;
+  border: none;
+  background-color: #3066be;
+  border-radius: 8px 8px 0 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px 2px #00000018;
+}
+
+.business-button:hover {
+  background-color: #ad4436;
+}
+
+.volunteer-button:hover {
+  background-color: #28559e;
+}
+
+.login-button-holder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}

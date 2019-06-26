@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1> Hello</h1>
+      <h1> Welcome to Replate</h1>
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/business-sign-up" render={props => <BusinessSignUp {...props} />} />
       <PrivateRoute exact path='/business-dashboard' component={BusinessDashboard} />

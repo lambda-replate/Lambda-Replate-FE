@@ -20,7 +20,9 @@ class VolunteerDashboard extends React.Component {
         businesses: [],
         filteredFoods: [],
         searchDate: '',
+        searchCompany: '',
     };
+    
 
     componentDidMount(){
         if(!localStorage.getItem('user')) {
@@ -34,24 +36,22 @@ class VolunteerDashboard extends React.Component {
         });
     }
 
-    searchInput = event => {
-        let filterTerm = event.target.value;
+    searchInput = e => {
+        let filterTerm = e.target.value;
         this.setState({
-            [event.target.name]: event.target.value.toString(),
+            [e.target.name]: e.target.value,
         });
-        this.filterFoods(filterTerm);
-        console.log('SearchDate: ',event.target.value);
-        console.log('filtered foods: ', this.state.filteredFoods);
+        this.filterFoods(e.target.value);
     };
 
     filterFoods = filterTerm => {
         console.log('asll the foods: ',this.state.foods);
         let newFilteredFoods = this.state.foods.filter(food => {
-            return food.pickup_date.includes(filterTerm);
+            return food.pickup_date.includes(filterTerm) || food.business_name.toLowerCase().includes(filterTerm);
         })
         this.setState({
             filteredFoods: newFilteredFoods,
-            })
+            });
     }
 
     getFood = () => {
@@ -120,7 +120,7 @@ class VolunteerDashboard extends React.Component {
     render(){
         return(
             <div>
-                <SearchBar inputChange={this.searchInput}  searchDate={this.state.searchDate}/>
+                <SearchBar inputChange={this.searchInput}  searchDate={this.state.searchDate} searchCompany={this.state.searchCompany}/>
                 <FoodSection>
                     {this.state.filteredFoods.length === 0 ? 
                         this.state.foods.map(food => {
