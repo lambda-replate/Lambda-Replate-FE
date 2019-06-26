@@ -94,7 +94,7 @@ export const updateFood = (updatedFood, id) => dispatch => {
         })
     };
 
-    export const claimFood = (id, claimStatus) => dispatch => {
+    export const claimFood = (id, claimStatus, proppedFunction) => dispatch => {
         const token = localStorage.getItem('jwt');
         const requestConfig = {
             headers: {
@@ -105,7 +105,9 @@ export const updateFood = (updatedFood, id) => dispatch => {
         .put(`/food/claim/${id}`, claimStatus, requestConfig)
         .then(res => {
             console.log(res);
-            dispatch({ type: DELETE_FOOD, payload: res.data})
+            dispatch({ type: DELETE_FOOD, payload: res.data});
+            proppedFunction();
+
         })
         .catch(err => {
             console.log(err)
