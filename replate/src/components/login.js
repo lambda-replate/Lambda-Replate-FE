@@ -2,6 +2,14 @@ import React from 'react'
 import Loader from 'react-loader-spinner'
 import { connect } from 'react-redux'
 import { login } from '../actions'
+// import styled from 'styled-components';
+
+import '../App.css';
+
+
+// const login = styled.div`
+
+// `
 
 class Login extends React.Component {
     state = {
@@ -36,32 +44,47 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Hey</h1>
-                <form>
-                    <input 
-                        type="text" 
-                        placeholder="Username" 
-                        name="username" 
-                        value={this.state.creds.username} 
-                        onChange={this.handleChange}
-                        required='fill this out'
-                    />
-                    <input 
-                        type="password" 
-                        placeholder="Password" 
-                        name="password" 
-                        value={this.state.creds.password} 
-                        onChange={this.handleChange}
-                        required='fill this out'
-                    />
-                    {/* {error && <div>Oops!</div>} */}
-                </form>
-                <button value='business' onClick={this.login}>Business Log in</button>
-                    <button value='volunteer' onClick={this.login}>Volunteer Log in</button>
+          <div className="login-container">
+            <div className="login-header">
+              <h1>Log In</h1>
             </div>
+            <div className="form-container">
+              <form>
+                <div className="input-container">
+                  <label>Email</label>
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    required="fill this out"
+                    onChange={this.handleChange}
+                    value={this.state.creds.username}
+                  />
+                </div>
+                <div className="input-container">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    required="fill this out"
+                    onChange={this.handleChange}
+                    value={this.state.creds.password}
+                  />
+                </div>
+              </form>
+              <div className="login-button-holder">
+                <button className="business-button" value="business" onClick={this.login}>
+                  Business Log in
+                </button>
+                <button className="volunteer-button" value="volunteer" onClick={this.login}>
+                  Volunteer Log in
+                </button>
+              </div>
+            </div>
+          </div>
         )
-    }
+}
 }
 
 const mapStateToProps = state => {
