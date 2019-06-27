@@ -1,13 +1,15 @@
 .App {
   text-align: center;
-
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .nav-bar-container {
   width: 100%;
   height: 40px;
-  background-color: #4CB050;
-  
+  background-color: #4cb050;
+  position: fixed;
+  z-index: 9999;
 }
 
 .nav-bar {
@@ -19,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-
+  z-index: 999;
 }
 
 .nav-logo {
@@ -36,19 +38,24 @@ label {
   font-size: 0.8rem;
 }
 
+.login-page-container {
+  padding-top: 100px;
+}
+
 .login-container {
   width: 550px;
   height: 500px;
   background-color: white;
   border-radius: 15px;
-  margin: 50px auto;
+  margin: 0 auto;
+
   overflow: hidden;
   box-shadow: 0 0 37px 5px #00000025;
 }
 
 .login-container form input {
   display: block;
-  width: 100%;
+  width: 90%;
   margin: 5px auto;
   border-radius: 8px 8px 0 8px;
   background: none;
@@ -80,6 +87,7 @@ label {
 
 .login-header h1 {
   font-size: 2.6rem;
+  margin: 0;
 }
 
 .business-button {
@@ -91,6 +99,7 @@ label {
   font-weight: bold;
   padding: 10px 20px;
   box-shadow: 0 0 5px 2px #00000018;
+  cursor: pointer;
 }
 
 .volunteer-button {
@@ -102,6 +111,7 @@ label {
   font-weight: bold;
   padding: 10px 20px;
   box-shadow: 0 0 5px 2px #00000018;
+  cursor: pointer;
 }
 
 .business-button:hover {
@@ -119,24 +129,27 @@ label {
   margin-top: 50px;
 }
 
-.claimed{
+.claimed {
   background-color: #c94e3e;
   opacity: 0.75;
+  z-index: 0;
 }
 
-.claimed-by-you{
+.claimed-by-you {
   background-color: #4cb050;
+  z-index: 0;
 }
 
-.unclaimed{
-
+.unclaimed {
+  z-index: 0;
 }
 
 /* Start Business Dashboard Styling */
 
 .business-dash-container {
   width: 900px;
-  margin: 100px auto;
+  margin: 0 auto;
+  padding-top: 40px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -144,6 +157,7 @@ label {
 
 .dashboard-top {
   text-align: left;
+
   margin-bottom: 20px;
 }
 
@@ -170,14 +184,16 @@ label {
 .business-card-description h3 {
   font-size: 1rem;
   font-weight: bold;
+  margin: 0;
 }
 
 .business-card-description h4 {
   font-size: 0.8rem;
+  margin: 0;
 }
 
 .food-pickup-form {
-  width: 400px;
+  width: 450px;
   background-color: white;
   box-shadow: 0 0 37px 5px #00000025;
   border-radius: 15px;
@@ -204,6 +220,7 @@ label {
 
 .food-pickup-form-header h1 {
   font-size: 2.6rem;
+  margin: 0;
 }
 
 .pickup-name-input,
@@ -236,6 +253,7 @@ label {
   margin-top: 30px;
   box-shadow: 0 0 5px 2px #00000018;
   width: 100%;
+  cursor: pointer;
 }
 
 .pickup-button:hover {
@@ -243,3 +261,24 @@ label {
 }
 
 /* END BUSINESS DASHBOARD STYLING */
+
+/* START SEARCH BAR STYLING */
+
+.search-bar-container {
+  background-color: white;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
+  margin-top: 40px;
+}
+
+.search-bar-container input {
+  border: none;
+  font-size: 0.8rem;
+  background-color: #fafafa;
+  text-align: center;
+  width: auto;
+  height: 30px;
+}
