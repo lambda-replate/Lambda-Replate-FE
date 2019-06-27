@@ -30,3 +30,216 @@
   color: white;
   margin: 0 20px;
 }
+
+label {
+  margin: 0 0 0 8px;
+  font-size: 0.8rem;
+}
+
+.login-container {
+  width: 550px;
+  height: 500px;
+  background-color: white;
+  border-radius: 15px;
+  margin: 50px auto;
+  overflow: hidden;
+  box-shadow: 0 0 37px 5px #00000025;
+}
+
+.login-container form input {
+  display: block;
+  width: 100%;
+  margin: 5px auto;
+  border-radius: 8px 8px 0 8px;
+  background: none;
+  background-color: #f6f6f6;
+  border: 1px solid #dedede65;
+  height: 45px;
+  padding-left: 20px;
+}
+
+::placeholder {
+  color: rgba(39, 45, 45, 0.349);
+}
+
+.input-container {
+  text-align: left;
+  margin: 30px 0;
+}
+
+.form-container {
+  width: 60%;
+  margin: 40px auto;
+}
+
+.login-header {
+  background-color: #4cb050;
+  color: white;
+  padding: 30px 0;
+}
+
+.login-header h1 {
+  font-size: 2.6rem;
+}
+
+.business-button {
+  background: none;
+  border: none;
+  background-color: #c94e3e;
+  border-radius: 8px 8px 0 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px 2px #00000018;
+}
+
+.volunteer-button {
+  background: none;
+  border: none;
+  background-color: #3066be;
+  border-radius: 8px 8px 0 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px 2px #00000018;
+}
+
+.business-button:hover {
+  background-color: #ad4436;
+}
+
+.volunteer-button:hover {
+  background-color: #28559e;
+}
+
+.login-button-holder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.claimed{
+  background-color: #c94e3e;
+  opacity: 0.75;
+}
+
+.claimed-by-you{
+  background-color: #4cb050;
+}
+
+.unclaimed{
+
+}
+
+/* Start Business Dashboard Styling */
+
+.business-dash-container {
+  width: 900px;
+  margin: 100px auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+.dashboard-top {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.business-card {
+  width: 200px;
+  height: 100%;
+  border-radius: 19px;
+  background-color: white;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.business-photo {
+  background-color: grey;
+  width: 100%;
+  height: 120px;
+}
+
+.business-card-description {
+  text-align: left;
+  padding: 15px;
+}
+
+.business-card-description h3 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.business-card-description h4 {
+  font-size: 0.8rem;
+}
+
+.food-pickup-form {
+  width: 400px;
+  background-color: white;
+  box-shadow: 0 0 37px 5px #00000025;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.form-wrapper {
+  width: 70%;
+  margin: 40px auto 60px auto;
+}
+
+.business-location {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.food-pickup-form-header {
+  width: 100%;
+  background-color: #4cb050;
+  padding: 30px 0;
+  color: white;
+}
+
+.food-pickup-form-header h1 {
+  font-size: 2.6rem;
+}
+
+.pickup-name-input,
+.pickup-date-input,
+.pickup-time-input,
+.pickup-description-input {
+  text-align: left;
+}
+
+.food-pickup-form form input {
+  display: block;
+  width: 100%;
+  margin: 5px auto;
+  border-radius: 8px 8px 0 8px;
+  background: none;
+  background-color: #f6f6f6;
+  border: 1px solid #dedede65;
+  height: 45px;
+  padding-left: 20px;
+}
+
+.pickup-button {
+  background: none;
+  border: none;
+  background-color: #4cb050;
+  border-radius: 8px 8px 0 8px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 30px;
+  box-shadow: 0 0 5px 2px #00000018;
+  width: 100%;
+}
+
+.pickup-button:hover {
+  background-color: #409142;
+}
+
+/* END BUSINESS DASHBOARD STYLING */

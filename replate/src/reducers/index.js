@@ -3,10 +3,12 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     SIGNUP,
+    ADD_FOOD,
+    DELETE_FOOD,
 } from '../actions';
 
 const initialState = {
-    foodInstance: [],
+    foods: [],
     user: {},
     error: '',
     loggingIn: false,
@@ -35,6 +37,16 @@ const reducer = (state = initialState, action) => {
                loggingIn: false,
                user: {...action.payload} 
             }
+        case ADD_FOOD:
+            return{
+                ...state,
+                foods: action.payload
+            }
+            case DELETE_FOOD:
+                return {
+                    ...state,
+                    foods: action.payload
+                }
         default:
         return state;
     }
