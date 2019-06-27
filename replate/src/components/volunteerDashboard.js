@@ -12,6 +12,9 @@ const FoodSection = styled.div`
   flex-flow: row wrap;
   justify-content: space-evenly;
   padding-top: 180px;
+  h2 {
+    width: 100%;
+  }
 `;
 
 class VolunteerDashboard extends React.Component {
@@ -138,13 +141,13 @@ class VolunteerDashboard extends React.Component {
           searchDate={this.state.searchDate}
           searchCompany={this.state.searchCompany}
         />
-        {/* <FoodSection>
+        <FoodSection>
+          {/* All foods that the volunteer has claimed show up first  */}
+          <h2>Your Reserved Food Donations</h2>
           {this.state.filteredFoods.length === 0
             ? this.state.foods
                 .filter(food => {
-                  return (
-                    food.is_claimed && food.business_id === this.state.user.id
-                  );
+                  return food.volunteer_id === this.state.user.id;
                 })
                 .map(food => {
                   return (
@@ -160,9 +163,7 @@ class VolunteerDashboard extends React.Component {
                 })
             : this.state.filteredFoods
                 .filter(food => {
-                  return (
-                    food.is_claimed && food.business_id === this.state.user.id
-                  );
+                  return food.volunteer_id === this.state.user.id;
                 })
                 .map(food => {
                   return (
@@ -176,8 +177,9 @@ class VolunteerDashboard extends React.Component {
                     />
                   );
                 })}
-        </FoodSection> */}
-        <FoodSection>
+
+          {/*Then we present all cards that re unclaimed! */}
+          <h2>Unclaimed Food Donations</h2>
           {this.state.filteredFoods.length === 0
             ? this.state.foods
                 .filter(food => {

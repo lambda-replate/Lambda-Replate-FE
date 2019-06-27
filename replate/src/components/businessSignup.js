@@ -9,9 +9,11 @@ const SignUpForm = styled.div`
   height: 650px;
   background-color: white;
   border-radius: 15px;
-  margin: 50px auto;
+  margin: 0 auto;
+
   overflow: hidden;
   box-shadow: 0 0 37px 5px #00000025;
+
   form input {
     display: block;
     width: 80%;
@@ -26,27 +28,28 @@ const SignUpForm = styled.div`
   h1 {
     background-color: #4cb050;
     color: white;
-    padding: 30px 0;
+    padding: 20px 0;
     font-size: 2.6rem;
-    margin-top: 0px;
   }
 `;
 
 const SignUpButton = styled.div`
-  background: none;
-  border: none;
-  background-color: #4cb050;
-  border-radius: 8px 8px 0 8px;
-  width: 90%;
-  color: white;
-  font-weight: bold;
-  margin: 0 auto;
-  margin-top: 30px;
-  padding: 10px 20px;
-  box-shadow: 0 0 5px 2px #00000018;
-  cursor: pointer;
-  &:hover {
-    background-color: #2cb050;
+  button {
+    background: none;
+    border: none;
+    background-color: #4cb050;
+    border-radius: 8px 8px 0 8px;
+    width: 80%;
+    color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px 2px #00000018;
+    cursor: pointer;
+    &:hover {
+      background-color: #2cb050;
+    }
   }
 `;
 
@@ -107,68 +110,72 @@ class BusinessSignUp extends React.Component {
 
   render() {
     return (
-      <SignUpForm>
-        <h1>Sign Up here!</h1>
-        <Radio.Group onChange={this.userChange} defaultValue="business">
-          <Radio value="business" defaultChecked>
-            Business
-          </Radio>
-          <Radio value="volunteer">Volunteer</Radio>
-        </Radio.Group>
-        <form onSubmit={this.signUp}>
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={this.state.newBusiness.name}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <input
-            type="text"
-            name="organization_name"
-            placeholder="Organization Name"
-            value={this.state.newBusiness.organization_name}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Street, City, State, ZIP"
-            value={this.state.newBusiness.address}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            value={this.state.newBusiness.email}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <input
-            type="number"
-            name="phone"
-            placeholder="(123)-456-7890"
-            value={this.state.newBusiness.phone}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={this.state.newBusiness.password}
-            onChange={this.handleChange}
-            required="fill this out"
-          />
-          <SignUpButton type="submit" onClick={this.signUp}>
-            Sign Us Up
-          </SignUpButton>
-        </form>
-      </SignUpForm>
+      <div className="sign-up-wrapper">
+        <SignUpForm>
+          <h1>Sign Up</h1>
+          <Radio.Group onChange={this.userChange} defaultValue="business">
+            <Radio value="business" defaultChecked>
+              Business
+            </Radio>
+            <Radio value="volunteer">Volunteer</Radio>
+          </Radio.Group>
+          <form onSubmit={this.signUp}>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              value={this.state.newBusiness.name}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <input
+              type="text"
+              name="organization_name"
+              placeholder="Organization Name"
+              value={this.state.newBusiness.organization_name}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <input
+              type="text"
+              name="address"
+              placeholder="Street, City, State, ZIP"
+              value={this.state.newBusiness.address}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              value={this.state.newBusiness.email}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <input
+              type="number"
+              name="phone"
+              placeholder="(123)-456-7890"
+              value={this.state.newBusiness.phone}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={this.state.newBusiness.password}
+              onChange={this.handleChange}
+              required="fill this out"
+            />
+            <SignUpButton>
+              <button type="submit" onClick={this.signUp}>
+                Sign Us Up
+              </button>
+            </SignUpButton>
+          </form>
+        </SignUpForm>
+      </div>
     );
   }
 }

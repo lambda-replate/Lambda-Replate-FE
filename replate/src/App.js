@@ -14,11 +14,9 @@ function App() {
     <div className="App">
       <NavBar />
       {/* <h1> Welcome to Replate</h1> */}
+      <Route exact path="/" render={props => <Login {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route
-        path="/business-sign-up"
-        render={props => <BusinessSignUp {...props} />}
-      />
+      <Route path="/sign-up" render={props => <BusinessSignUp {...props} />} />
       <PrivateRoute
         exact
         path="/business-dashboard"

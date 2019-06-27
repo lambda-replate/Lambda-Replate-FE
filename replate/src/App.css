@@ -1,7 +1,21 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+html {
+  background-color: #f5f5f5;
+}
+
 .App {
   text-align: center;
   margin: 0;
   box-sizing: border-box;
+  background-color: #f5f5f5;
+  height: 100vh;
 }
 
 .nav-bar-container {
@@ -44,7 +58,7 @@ label {
 
 .login-container {
   width: 550px;
-  height: 500px;
+  height: auto;
   background-color: white;
   border-radius: 15px;
   margin: 0 auto;
@@ -53,9 +67,13 @@ label {
   box-shadow: 0 0 37px 5px #00000025;
 }
 
+.login-container form {
+  width: 100%;
+}
+
 .login-container form input {
   display: block;
-  width: 90%;
+  width: 100%;
   margin: 5px auto;
   border-radius: 8px 8px 0 8px;
   background: none;
@@ -75,19 +93,20 @@ label {
 }
 
 .form-container {
-  width: 60%;
-  margin: 40px auto;
+  width: 70%;
+  margin: 40px auto 0 auto;
 }
 
 .login-header {
   background-color: #4cb050;
-  color: white;
-  padding: 30px 0;
+
+  padding: 20px 0;
 }
 
 .login-header h1 {
   font-size: 2.6rem;
   margin: 0;
+  color: white;
 }
 
 .business-button {
@@ -126,7 +145,8 @@ label {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  margin-top: 50px;
+  padding-bottom: 40px;
+  /* padding-top: 50px; */
 }
 
 .claimed {
@@ -146,10 +166,23 @@ label {
 
 /* Start Business Dashboard Styling */
 
+.business-dash-columns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+}
+
+.column-middle {
+  width: 90%;
+}
+
 .business-dash-container {
-  width: 900px;
+  width: 80%;
+  height: 100%;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 200px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -162,8 +195,8 @@ label {
 }
 
 .business-card {
-  width: 200px;
-  height: 100%;
+  width: 300px;
+  height: auto;
   border-radius: 19px;
   background-color: white;
   overflow: hidden;
@@ -171,9 +204,12 @@ label {
 }
 
 .business-photo {
-  background-color: grey;
   width: 100%;
   height: 120px;
+  background-image: url("https://www.replate.org/photos/original/missing.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .business-card-description {
@@ -192,17 +228,33 @@ label {
   margin: 0;
 }
 
-.food-pickup-form {
-  width: 450px;
+.ant-modal-content {
+  width: 550px;
   background-color: white;
   box-shadow: 0 0 37px 5px #00000025;
-  border-radius: 15px;
+  border-radius: 15px !important;
   overflow: hidden;
 }
 
-.form-wrapper {
+.ant-modal-close-x {
+  color: white;
+}
+
+.ant-modal-content .form-wrapper {
   width: 70%;
   margin: 40px auto 60px auto;
+}
+
+.ant-modal-header {
+  width: 100% !important;
+  background-color: #4cb050 !important;
+}
+
+.ant-modal-title {
+  color: white !important;
+  text-align: center !important;
+  font-size: 2rem !important;
+  padding: 10px !important;
 }
 
 .business-location {
@@ -211,7 +263,7 @@ label {
   justify-content: space-between;
 }
 
-.food-pickup-form-header {
+.ant-modal-header .food-pickup-form-header {
   width: 100%;
   background-color: #4cb050;
   padding: 30px 0;
@@ -230,9 +282,9 @@ label {
   text-align: left;
 }
 
-.food-pickup-form form input {
+.ant-modal-body form input {
   display: block;
-  width: 100%;
+  width: 90%;
   margin: 5px auto;
   border-radius: 8px 8px 0 8px;
   background: none;
@@ -240,6 +292,10 @@ label {
   border: 1px solid #dedede65;
   height: 45px;
   padding-left: 20px;
+}
+
+.ant-modal-footer {
+  display: none;
 }
 
 .pickup-button {
@@ -254,6 +310,12 @@ label {
   box-shadow: 0 0 5px 2px #00000018;
   width: 100%;
   cursor: pointer;
+}
+
+.ant-btn-primary {
+  background-color: #4cb050 !important;
+  border-radius: 8px 8px 0 8px !important;
+  border: none !important;
 }
 
 .pickup-button:hover {
@@ -281,4 +343,15 @@ label {
   text-align: center;
   width: auto;
   height: 30px;
+  margin-top: 15px;
+}
+
+.search-bar-container h2 {
+  font-size: 0.8rem;
+  display: inline;
+  margin-right: 10px;
+}
+
+.sign-up-wrapper {
+  padding-top: 100px;
 }

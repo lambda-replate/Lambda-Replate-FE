@@ -5,7 +5,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-bar-container">
-        <h2>Search for Food donations by Company Name or Date!</h2>
+        <h2>Search for Food Pickups by Company Name or Date!</h2>
         <input
           type="date"
           name="searchDate"

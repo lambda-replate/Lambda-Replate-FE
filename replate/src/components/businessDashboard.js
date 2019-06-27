@@ -4,12 +4,18 @@ import axios from "axios";
 import { addFood, deleteFood, updateFood } from "../actions";
 import FoodCard from "./foodCard";
 import styled from "styled-components";
+import { Modal, Button } from "antd";
+import "antd/dist/antd.css";
 import "../App.css";
 
 const FoodSection = styled.div`
+  width: 80%;
+  height: 100vh;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin: 0 auto;
+  overflow-y: auto;
 `;
 
 class BusinessDashboard extends React.Component {
@@ -23,7 +29,37 @@ class BusinessDashboard extends React.Component {
       description: "",
       is_claimed: 0,
       volunteer_id: null
-    }
+    },
+    visible: false
+  };
+
+  // Modal Functions
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+      newFood: {
+        name: "",
+        pickup_date: "",
+        time: "",
+        description: "",
+        is_claimed: 0,
+        volunteer_id: null
+      }
+    });
   };
 
   getFood = () => {
@@ -105,84 +141,108 @@ class BusinessDashboard extends React.Component {
   render() {
     return (
       <div className="business-dash-container">
-        <h1>My Business Dashboard</h1>
+        <h1>
+          Welcome to your Business Dashboard,{" "}
+          {this.state.user.organization_name}!
+        </h1>
         <div className="dashboard-top" />
-
         <div className="business-location">
-          <div className="business-card">
-            <h3>My Locations</h3>
-            <div className="business-photo"> stuff</div>
-            <div className="business-card-description">
-              <h3>Business Location</h3>
-              <h4>9222 E Hampden Ave, Denver, CO 80231</h4>
+          <div className="business-dash-columns">
+            <div className="column-left">
+              <div className="business-card">
+                <h3>My Location</h3>
+                <div className="business-photo" />
+                <div className="business-card-description">
+                  <h3>{this.state.user.organization_name}</h3>
+                  <h4>{this.state.user.address}</h4>
+                </div>
+              </div>
+              <Button type="primary" onClick={this.showModal}>
+                + Add Food Request
+              </Button>
             </div>
-          </div>
-          <div className="food-pickup-form">
-            <div className="food-pickup-form-header">
-              <h1>Schedule a Pickup</h1>
-            </div>
-            <div className="form-wrapper">
-              <form onSubmit={this.addFood}>
-                <div className="pickup-name-input">
-                  <label>Pickup Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Pickup Name"
-                    value={this.state.newFood.name}
-                    onChange={this.handleChange}
+            <FoodSection>
+              {this.state.foods.map(food => {
+                return (
+                  <FoodCard
+                    food={food}
+                    deleteFood={this.deleteFood}
+                    updateFood={this.updateFood}
+                    isBusiness={true}
+                    showModal={this.showModal}
                   />
-                </div>
-                <div className="pickup-date-input">
-                  <label>Pickup Date</label>
-                  <input
-                    type="date"
-                    name="pickup_date"
-                    placeholder="Pickup Date"
-                    value={this.state.newFood.pickup_date}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="pickup-time-input">
-                  <label>Pickup Time</label>
-                  <input
-                    type="time"
-                    name="time"
-                    placeholder="Pickup Time"
-                    value={this.state.newFood.time}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="pickup-description-input">
-                  <label>Pickup Description</label>
-                  <input
-                    type="textarea"
-                    name="description"
-                    placeholder="Pickup Description"
-                    value={this.state.newFood.description}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <button className="pickup-button" type="submit">
-                  + Schedule a Pickup
-                </button>
-              </form>
+                );
+              })}
+            </FoodSection>
+
+            <div className="column-right">
+              <div className="food-pickup-form">
+                <div className="food-pickup-form-header" />
+              </div>
             </div>
           </div>
         </div>
-
-        <FoodSection>
-          {this.state.foods.map(food => {
-            return (
-              <FoodCard
-                food={food}
-                deleteFood={this.deleteFood}
-                updateFood={this.updateFood}
-                isBusiness={true}
-              />
-            );
-          })}
-        </FoodSection>
+        <Modal
+          title="Schedule a Pickup"
+          visible={this.state.visible}
+          onOk={() => {
+            this.handleOk();
+            this.addFood();
+          }}
+          onCancel={this.handleCancel}
+        >
+          <div className="form-wrapper">
+            <form onSubmit={this.addFood}>
+              <div className="pickup-name-input">
+                <label>Pickup Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Pickup Name"
+                  value={this.state.newFood.name}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="pickup-date-input">
+                <label>Pickup Date</label>
+                <input
+                  type="date"
+                  name="pickup_date"
+                  placeholder="Pickup Date"
+                  value={this.state.newFood.pickup_date}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="pickup-time-input">
+                <label>Pickup Time</label>
+                <input
+                  type="time"
+                  name="time"
+                  placeholder="Pickup Time"
+                  value={this.state.newFood.time}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="pickup-description-input">
+                <label>Pickup Description</label>
+                <input
+                  type="textarea"
+                  name="description"
+                  placeholder="Pickup Description"
+                  value={this.state.newFood.description}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button
+                className="pickup-button"
+                type="submit"
+                onClick={this.handleOk}
+              >
+                + Schedule a Pickup
+              </button>
+            </form>
+          </div>
+        </Modal>
       </div>
     );
   }

@@ -1,21 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import "antd/dist/antd.css";
 import "../App.css";
+import { Button } from "antd";
 
 const FoodCardz = styled.div`
   width: 400px;
-  height: auto;
-  border: 1px solid black;
+  max-width: 400px;
+  height: 300px;
+  max-height: 500px;
+  border: 1px solid #00000019;
   border-radius: 100px 50px;
   margin: 10px 10px;
   padding: 20px;
+  background-color: #ffffff;
 
   a {
     text-decoration: underline;
     text-emphasis: bold;
     color: black;
   }
+`;
+
+const ZButtonHolder = styled.div`
+  display: flex;
+  flex-flow: row-nowrap;
+  justify-content: space-around;
 `;
 
 class FoodCard extends React.Component {
@@ -101,23 +112,29 @@ class FoodCard extends React.Component {
           {this.props.food.description}
         </p>
         {this.state.isBusiness && (
-          <div>
-            <button onClick={() => this.props.deleteFood(this.props.food.id)}>
+          <ZButtonHolder>
+            <Button
+              type="primary"
+              onClick={() => this.props.deleteFood(this.props.food.id)}
+            >
               Delete Food
-            </button>
-            <button
-              onClick={() =>
-                this.props.updateFood(this.props.food, this.props.food.id)
-              }
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                this.props.showModal();
+                this.props.updateFood(this.props.food, this.props.food.id);
+              }}
             >
               Update Food
-            </button>
-          </div>
+            </Button>
+          </ZButtonHolder>
         )}
         {!this.state.isBusiness &&
           (!this.props.food.is_claimed ||
             this.props.food.volunteer_id === this.props.user_id) && (
-            <button
+            <Button
+              type="primary"
               onClick={() =>
                 this.props.claimFood(
                   this.props.food.id,
@@ -128,7 +145,7 @@ class FoodCard extends React.Component {
               }
             >
               {this.props.food.is_claimed === 1 ? "Unclaim food" : "Claim food"}
-            </button>
+            </Button>
           )}
       </FoodCardz>
     );
