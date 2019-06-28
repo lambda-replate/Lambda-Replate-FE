@@ -159,6 +159,7 @@ class VolunteerDashboard extends React.Component {
                           user_id={this.state.user.id}
                           businessName={food.business_name}
                           businessAddress={food.business_address}
+                          volunteerAddress={this.state.user.address}
                         />
                       );
                     })
@@ -175,6 +176,7 @@ class VolunteerDashboard extends React.Component {
                           user_id={this.state.user.id}
                           businessName={food.business_name}
                           businessAddress={food.business_address}
+                          volunteerAddress={this.state.user.address}
                         />
                       );
                     })}
@@ -199,6 +201,7 @@ class VolunteerDashboard extends React.Component {
                           user_id={this.state.user.id}
                           businessName={food.business_name}
                           businessAddress={food.business_address}
+                          volunteerAddress={this.state.user.address}
                         />
                       );
                     })
@@ -215,6 +218,7 @@ class VolunteerDashboard extends React.Component {
                           user_id={this.state.user.id}
                           businessName={food.business_name}
                           businessAddress={food.business_address}
+                          volunteerAddress={this.state.user.address}
                         />
                       );
                     })}
