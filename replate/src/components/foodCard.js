@@ -72,6 +72,7 @@ class FoodCard extends React.Component {
 
   componentDidMount() {
     console.log(" businessName", this.props.businessName);
+    console.log('volunteer address: ', this.props.volunteerAddress)
     this.getBusinesses();
     this.setState({
       businesses: localStorage.getItem("businesses")
@@ -99,7 +100,7 @@ class FoodCard extends React.Component {
         </p>
         {this.props.businessName ? (
           <a
-            href={`https://maps.google.com/?q=${this.props.businessAddress}`}
+            href={`https://www.google.com/maps/dir/${this.props.volunteerAddress}/${this.props.businessAddress}/`}
             target="_blank"
           >
             Click here for directions
