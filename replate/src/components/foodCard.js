@@ -3,19 +3,17 @@ import styled from "styled-components";
 import axios from "axios";
 import "antd/dist/antd.css";
 import "../App.css";
-import { Button } from "antd";
+import { Button, Icon } from "antd";
 
 const FoodCardz = styled.div`
   width: 400px;
   max-width: 400px;
-  height: 300px;
   max-height: 500px;
   border: 1px solid #00000019;
   border-radius: 100px 50px;
   margin: 10px 10px;
-  padding: 20px;
+  padding: 40px;
   background-color: #ffffff;
-
   a {
     text-decoration: underline;
     text-emphasis: bold;
@@ -91,7 +89,7 @@ class FoodCard extends React.Component {
             : "unclaimed"
         }
       >
-        <h2>Food: {this.props.food.name}</h2>
+        <h2>{this.props.food.name}</h2>
         {this.props.businessName ? (
           <h3>Provided By: {this.props.businessName}</h3>
         ) : null}
@@ -108,25 +106,25 @@ class FoodCard extends React.Component {
           </a>
         ) : null}
         <p>
-          What they said about the food: <br />
+          Description: <br />
           {this.props.food.description}
         </p>
         {this.state.isBusiness && (
           <ZButtonHolder>
             <Button
-              type="primary"
+              type="secondary"
               onClick={() => this.props.deleteFood(this.props.food.id)}
             >
-              Delete Food
+              Delete Food <Icon type="delete" />
             </Button>
             <Button
-              type="primary"
+              type="default"
               onClick={() => {
                 this.props.showModal();
                 this.props.updateFood(this.props.food, this.props.food.id);
               }}
             >
-              Update Food
+              Update Food <Icon type="edit" />
             </Button>
           </ZButtonHolder>
         )}
@@ -134,7 +132,7 @@ class FoodCard extends React.Component {
           (!this.props.food.is_claimed ||
             this.props.food.volunteer_id === this.props.user_id) && (
             <Button
-              type="primary"
+              type={this.props.food.is_claimed === 1 ? "secondary" : "primary"}
               onClick={() =>
                 this.props.claimFood(
                   this.props.food.id,
