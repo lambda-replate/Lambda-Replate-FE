@@ -8,14 +8,17 @@ import { Modal, Button } from "antd";
 import "antd/dist/antd.css";
 import "../App.css";
 
+let yesterday = new Date();
+yesterday.setDate(yesterday.getDate() - 1);
+let min = yesterday.toISOString().split("T")[0];
+
 const FoodSection = styled.div`
-  width: 80%;
+  width: 70%;
   height: 100vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   margin: 0 auto;
-  overflow-y: auto;
 `;
 
 class BusinessDashboard extends React.Component {
@@ -30,7 +33,8 @@ class BusinessDashboard extends React.Component {
       is_claimed: 0,
       volunteer_id: null
     },
-    visible: false
+    visible: false,
+    id: ""
   };
 
   // Modal Functions
@@ -58,7 +62,8 @@ class BusinessDashboard extends React.Component {
         description: "",
         is_claimed: 0,
         volunteer_id: null
-      }
+      },
+      id: ""
     });
   };
 
@@ -108,6 +113,17 @@ class BusinessDashboard extends React.Component {
       //     this.props.history.push(`/${this.state.userType}-dashboard`)
       // }
     });
+    this.setState({
+      newFood: {
+        name: "",
+        pickup_date: "",
+        time: "",
+        description: "",
+        is_claimed: 0,
+        volunteer_id: null
+      },
+      id: ""
+    });
     this.getFood();
   };
 
@@ -121,10 +137,11 @@ class BusinessDashboard extends React.Component {
       this.setState({
         newFood: {
           ...food
-        }
+        },
+        id: id
       });
     } else {
-      this.props.updateFood(this.state.newFood, id, this.getFood);
+      this.props.updateFood(this.state.newFood, this.state.id, this.getFood);
       this.setState({
         newFood: {
           name: "",
@@ -133,7 +150,8 @@ class BusinessDashboard extends React.Component {
           description: "",
           is_claimed: 0,
           volunteer_id: null
-        }
+        },
+        id: ""
       });
     }
   };
@@ -162,17 +180,20 @@ class BusinessDashboard extends React.Component {
               </Button>
             </div>
             <FoodSection>
-              {this.state.foods.map(food => {
-                return (
-                  <FoodCard
-                    food={food}
-                    deleteFood={this.deleteFood}
-                    updateFood={this.updateFood}
-                    isBusiness={true}
-                    showModal={this.showModal}
-                  />
-                );
-              })}
+              {this.state.foods
+                .filter(food => food.pickup_date > min)
+                .sort((a, b) => a.pickup_date < b.pickup_date)
+                .map(food => {
+                  return (
+                    <FoodCard
+                      food={food}
+                      deleteFood={this.deleteFood}
+                      updateFood={this.updateFood}
+                      isBusiness={true}
+                      showModal={this.showModal}
+                    />
+                  );
+                })}
             </FoodSection>
 
             <div className="column-right">
@@ -183,7 +204,7 @@ class BusinessDashboard extends React.Component {
           </div>
         </div>
         <Modal
-          title="Schedule a Pickup"
+          title={this.state.id ? "Update Pickup" : "Schedule a Pickup"}
           visible={this.state.visible}
           onOk={() => {
             this.handleOk();
@@ -211,6 +232,7 @@ class BusinessDashboard extends React.Component {
                   placeholder="Pickup Date"
                   value={this.state.newFood.pickup_date}
                   onChange={this.handleChange}
+                  min={min}
                 />
               </div>
               <div className="pickup-time-input">
@@ -233,14 +255,27 @@ class BusinessDashboard extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
+              {!this.state.id && (
+                <button
+                  className="pickup-button"
+                  type="submit"
+                  onClick={this.handleOk}
+                >
+                  + Schedule a Pickup
+                </button>
+              )}
+            </form>
+            {this.state.id && (
               <button
                 className="pickup-button"
-                type="submit"
-                onClick={this.handleOk}
+                onClick={() => {
+                  this.handleOk();
+                  this.updateFood();
+                }}
               >
-                + Schedule a Pickup
+                + Update Pickup
               </button>
-            </form>
+            )}
           </div>
         </Modal>
       </div>

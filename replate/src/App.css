@@ -4,17 +4,28 @@ h3,
 h4,
 h5 {
   margin: 0;
+  padding: 0;
 }
 
 html {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+}
+
+.nav-links .active {
+  font-weight: bold;
+
+  text-decoration: underline;
+}
+
+.nav-links a:hover {
+  color: rgba(255, 255, 255, 0.671);
 }
 
 .App {
   text-align: center;
   margin: 0;
   box-sizing: border-box;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   height: 100vh;
 }
 
@@ -27,7 +38,7 @@ html {
 }
 
 .nav-bar {
-  width: 75vw;
+  width: 70vw;
   height: 40px;
   line-height: 40px;
   display: flex;
@@ -39,7 +50,10 @@ html {
 }
 
 .nav-logo {
+  font-weight: bold;
+  font-size: 1.3rem;
   color: white;
+  cursor: default;
 }
 
 .nav-links a {
@@ -53,18 +67,18 @@ label {
 }
 
 .login-page-container {
-  padding-top: 100px;
+  padding-top: 150px;
 }
 
 .login-container {
-  width: 550px;
+  width: 500px;
   height: auto;
   background-color: white;
   border-radius: 15px;
   margin: 0 auto;
 
   overflow: hidden;
-  box-shadow: 0 0 37px 5px #00000025;
+  box-shadow: 0 0 37px 5px #00000017;
 }
 
 .login-container form {
@@ -145,23 +159,36 @@ label {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding-bottom: 40px;
+  padding: 20px 0 40px 0;
   /* padding-top: 50px; */
 }
 
 .claimed {
-  background-color: #c94e3e;
-  opacity: 0.75;
+  background-color: #adadad21;
   z-index: 0;
 }
 
+.claimed h2,
+.claimed p {
+  opacity: 0.5;
+}
+
 .claimed-by-you {
-  background-color: #4cb050;
+  background-color: #4cb04f67;
   z-index: 0;
 }
 
 .unclaimed {
   z-index: 0;
+}
+
+.unclaimed h2,
+.unclaimed p {
+  opacity: 1;
+}
+
+.active a {
+  color: red;
 }
 
 /* Start Business Dashboard Styling */
@@ -179,7 +206,7 @@ label {
 }
 
 .business-dash-container {
-  width: 80%;
+  width: 70%;
   height: 100%;
   margin: 0 auto;
   padding-top: 200px;
@@ -205,7 +232,7 @@ label {
 
 .business-photo {
   width: 100%;
-  height: 120px;
+  height: 160px;
   background-image: url("https://www.replate.org/photos/original/missing.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -318,6 +345,32 @@ label {
   border: none !important;
 }
 
+.ant-btn-primary:hover {
+  background-color: #3d8d40 !important;
+}
+
+.ant-btn-secondary:hover {
+  background-color: #a03e31 !important;
+}
+
+.ant-btn-default:hover {
+  background-color: #275091 !important;
+}
+
+.ant-btn-secondary {
+  background-color: #c94e3e !important;
+  color: white !important;
+  border-radius: 8px 8px 0 8px !important;
+  border: none !important;
+}
+
+.ant-btn-default {
+  background-color: #3066be !important;
+  color: white !important;
+  border-radius: 8px 8px 0 8px !important;
+  border: none !important;
+}
+
 .pickup-button:hover {
   background-color: #409142;
 }
@@ -354,4 +407,82 @@ label {
 
 .sign-up-wrapper {
   padding-top: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 70%;
+  align-items: center;
+}
+
+.sign-up-left {
+  width: 30%;
+  text-align: left;
+}
+
+.sign-up-wrapper h1 {
+  margin: 0 0 0 40px;
+  color: #272d2d;
+  padding: 20px 0 0 0;
+  font-size: 3rem;
+  text-align: left;
+}
+
+.sign-up-wrapper h4 {
+  margin: 0 0 0 40px;
+  padding-bottom: 20px;
+}
+
+.radio-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.radio-div {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.radio-div i {
+  font-size: 3.4rem;
+  margin: 0 20px 0 10px;
+}
+
+.sign-up-middle-line {
+  border-right: 1px solid rgba(0, 0, 0, 0.144);
+  height: 700px;
+}
+
+.reserved-food {
+  text-align: left;
+  width: 100%;
+  min-height: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.109);
+
+  margin: 0 200px 50px 200px;
+}
+
+.reserved-food-items {
+  border-top: 1px solid rgba(0, 0, 0, 0.109);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.unclaimed-food {
+  text-align: left;
+  width: 100%;
+  min-height: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.109);
+
+  margin: 0 200px;
+}
+
+.unclaimed-food-items {
+  border-top: 1px solid rgba(0, 0, 0, 0.109);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }

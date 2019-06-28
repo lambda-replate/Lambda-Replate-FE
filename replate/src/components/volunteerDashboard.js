@@ -11,7 +11,7 @@ const FoodSection = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-  padding-top: 180px;
+  padding-top: 140px;
   h2 {
     width: 100%;
   }
@@ -48,7 +48,6 @@ class VolunteerDashboard extends React.Component {
   };
 
   filterFoods = filterTerm => {
-    console.log("asll the foods: ", this.state.foods);
     let newFilteredFoods = this.state.foods.filter(food => {
       return (
         food.pickup_date.includes(filterTerm) ||
@@ -143,76 +142,84 @@ class VolunteerDashboard extends React.Component {
         />
         <FoodSection>
           {/* All foods that the volunteer has claimed show up first  */}
-          <h2>Your Reserved Food Donations</h2>
-          {this.state.filteredFoods.length === 0
-            ? this.state.foods
-                .filter(food => {
-                  return food.volunteer_id === this.state.user.id;
-                })
-                .map(food => {
-                  return (
-                    <FoodCard
-                      isBusiness={false}
-                      food={food}
-                      claimFood={this.claimFood}
-                      user_id={this.state.user.id}
-                      businessName={food.business_name}
-                      businessAddress={food.business_address}
-                    />
-                  );
-                })
-            : this.state.filteredFoods
-                .filter(food => {
-                  return food.volunteer_id === this.state.user.id;
-                })
-                .map(food => {
-                  return (
-                    <FoodCard
-                      isBusiness={false}
-                      food={food}
-                      claimFood={this.claimFood}
-                      user_id={this.state.user.id}
-                      businessName={food.business_name}
-                      businessAddress={food.business_address}
-                    />
-                  );
-                })}
+          <div className="reserved-food">
+            <h2>Your Reserved Food Donations</h2>
+            <div className="reserved-food-items">
+              {this.state.filteredFoods.length === 0
+                ? this.state.foods
+                    .filter(food => {
+                      return food.volunteer_id === this.state.user.id;
+                    })
+                    .map(food => {
+                      return (
+                        <FoodCard
+                          isBusiness={false}
+                          food={food}
+                          claimFood={this.claimFood}
+                          user_id={this.state.user.id}
+                          businessName={food.business_name}
+                          businessAddress={food.business_address}
+                        />
+                      );
+                    })
+                : this.state.filteredFoods
+                    .filter(food => {
+                      return food.volunteer_id === this.state.user.id;
+                    })
+                    .map(food => {
+                      return (
+                        <FoodCard
+                          isBusiness={false}
+                          food={food}
+                          claimFood={this.claimFood}
+                          user_id={this.state.user.id}
+                          businessName={food.business_name}
+                          businessAddress={food.business_address}
+                        />
+                      );
+                    })}
+            </div>
+          </div>
 
           {/*Then we present all cards that re unclaimed! */}
-          <h2>Unclaimed Food Donations</h2>
-          {this.state.filteredFoods.length === 0
-            ? this.state.foods
-                .filter(food => {
-                  return !food.is_claimed;
-                })
-                .map(food => {
-                  return (
-                    <FoodCard
-                      isBusiness={false}
-                      food={food}
-                      claimFood={this.claimFood}
-                      user_id={this.state.user.id}
-                      businessName={food.business_name}
-                      businessAddress={food.business_address}
-                    />
-                  );
-                })
-            : this.state.filteredFoods
-                .filter(food => {
-                  return !food.is_claimed;
-                })
-                .map(food => {
-                  return (
-                    <FoodCard
-                      isBusiness={false}
-                      food={food}
-                      claimFood={this.claimFood}
-                      user_id={this.state.user.id}
-                      businessName={food.business_name}
-                      businessAddress={food.business_address}
-                    />
-                  );
-                })}
+          <div className="unclaimed-food">
+            <h2>Unclaimed Food Donations</h2>
+            <div className="unclaimed-food-items">
+              {this.state.filteredFoods.length === 0
+                ? this.state.foods
+                    .filter(food => {
+                      return !food.is_claimed;
+                    })
+                    .map(food => {
+                      return (
+                        <FoodCard
+                          isBusiness={false}
+                          food={food}
+                          claimFood={this.claimFood}
+                          user_id={this.state.user.id}
+                          businessName={food.business_name}
+                          businessAddress={food.business_address}
+                        />
+                      );
+                    })
+                : this.state.filteredFoods
+                    .filter(food => {
+                      return !food.is_claimed;
+                    })
+                    .map(food => {
+                      return (
+                        <FoodCard
+                          isBusiness={false}
+                          food={food}
+                          claimFood={this.claimFood}
+                          user_id={this.state.user.id}
+                          businessName={food.business_name}
+                          businessAddress={food.business_address}
+                        />
+                      );
+                    })}
+            </div>
+          </div>
         </FoodSection>
       </div>
     );

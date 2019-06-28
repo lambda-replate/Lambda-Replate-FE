@@ -18,6 +18,8 @@ class Login extends React.Component {
     }
   };
 
+  componentDidMount() {}
+
   handleChange = e => {
     e.preventDefault();
     this.setState({
@@ -40,6 +42,7 @@ class Login extends React.Component {
   };
 
   render() {
+    console.log(this.props.user);
     return (
       <div className="login-page-container">
         <div className="login-container">
@@ -49,7 +52,7 @@ class Login extends React.Component {
           <div className="form-container">
             <form>
               <div className="input-container">
-                <label>Email</label>
+                <label>Username</label>
                 <input
                   type="text"
                   placeholder="Username"
@@ -98,7 +101,8 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     error: state.error,
-    loggingIn: state.loggingIn
+    loggingIn: state.loggingIn,
+    user: state.user
   };
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../App.css";
 
 const NavBar = () => {
@@ -13,13 +13,13 @@ const NavBar = () => {
         <div className="nav-logo">Replate</div>
         <div className="nav-links">
           {localStorage.getItem("jwt") ? (
-            <Link to="/login" onClick={logOut}>
+            <NavLink to="/login" onClick={logOut}>
               Log Out
-            </Link>
+            </NavLink>
           ) : (
             <div>
-              <Link to="/login">Log In</Link>
-              <Link to="/sign-up">Sign Up</Link>
+              <NavLink to="/login">Log In</NavLink>
+              <NavLink to="/sign-up">Sign Up</NavLink>
             </div>
           )}
         </div>
