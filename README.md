@@ -1,6 +1,6 @@
 # Replate App
 
-- An app designed to help reduce food waste and make it easy to donate surplus food to people that need it.
+- Replate is an app designed to help reduce food waste and make it easy to donate surplus food to people that need it.
 
 - You can find the deployed project at [https://replate-app.netlify.com/](https://replate-app.netlify.com/)
 
