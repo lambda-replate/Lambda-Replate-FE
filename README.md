@@ -1,4 +1,4 @@
-# Replate
+# Replate App
 
 - An app designed to help reduce food waste and make it easy to donate surplus food to people that need it.
 
@@ -20,11 +20,7 @@ Team Lead|UI Developer|UI Developer|Font-End Developer|Front-End Developer|Back-
 
 ## Project Overview
 
-- [Trello Board](https://trello.com/b/xGm2ZKkT/design-hub-16)
-
-- [Product Vision Document](https://www.notion.so/DesignHub-1eea155e6c6945babb35a52b5ebba865)
-
-- [UX Design Files (Figma)](https://www.figma.com/file/JL7cFpGBVDCZhDNuw4fA6G/DesignHub_Production)
+- [UX Design Prototype](https://xd.adobe.com/view/7434691b-632d-4dbf-4dce-cc7577920a5c-0205/)
 
 ### Key Features
 
